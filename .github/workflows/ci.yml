@@ -69,3 +69,18 @@ jobs:
         CC: ${{ matrix.compiler.CC }}
         CXX: ${{ matrix.compiler.CXX }}
         GCOV: ${{ matrix.compiler.GCOV }}
+
+    - name: Cpack
+      working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
+      run: cpack
+      env:
+        CC: ${{ matrix.compiler.CC }}
+        CXX: ${{ matrix.compiler.CXX }}
+        GCOV: ${{ matrix.compiler.GCOV }}
+    - name: Upload Debian Package
+      uses: actions/upload-artifact@v4
+      with:
+       name: msgpack11-debians
+       path: /home/runner/work/msgpack11/msgpack11/build/msgpack11-**.deb

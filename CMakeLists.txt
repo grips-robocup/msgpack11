@@ -22,3 +22,7 @@ endif()
 install(TARGETS msgpack11 DESTINATION lib)
 install(FILES "${CMAKE_CURRENT_SOURCE_DIR}/msgpack11.hpp" DESTINATION include)
 install(FILES "${CMAKE_BINARY_DIR}/msgpack11.pc" DESTINATION lib/pkgconfig)
+
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "KK") #required
+INCLUDE(CPack)
